@@ -12,6 +12,8 @@ from evals import eval_beam_base, eval_beam_histatt
 
 from nlgeval import NLGEval
 
+import tqdm
+
 import os
 import argparse
 
@@ -263,10 +265,10 @@ if __name__ == '__main__':
 
         count = 0
 
-        for i, data in enumerate(training_loader):
+        for i, data in enumerate(tqdm.tqdm(training_loader, ncols=80)):
 
-            if i % 200 == 0:
-                print(i)
+            # if i % 200 == 0:
+            #     print(i)
 
             if breaking and count == 5:
                 break

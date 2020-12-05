@@ -19,6 +19,7 @@ from utils.ListenerDatasetBert import ListenerDataset
 import datetime
 
 import os
+import tqdm
 
 if not os.path.isdir('saved_models'):
     os.mkdir('saved_models')
@@ -330,7 +331,7 @@ if __name__ == '__main__':
 
         count = 0
 
-        for i, data in enumerate(training_loader):
+        for i, data in enumerate(tqdm.tqdm(training_loader, ncols=80)):
 
             if i % 200 == 0:
                 print(i)
