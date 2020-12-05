@@ -164,6 +164,7 @@ class ListenerDataset(Dataset):
                     elif key == 'representations':
 
                         pad_rep = torch.zeros(max_src_length-sample['length'],sample['representations'].shape[1])
+                        pad_rep = pad_rep.to(sample['representations'].device)
 
                         padded = torch.cat((sample['representations'], pad_rep), dim=0)
 

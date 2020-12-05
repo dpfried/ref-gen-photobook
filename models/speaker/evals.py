@@ -1,5 +1,6 @@
 import torch
 import json
+import pprint
 
 import torch.nn as nn
 import torch.nn.functional as F
@@ -209,8 +210,8 @@ def eval_beam_base(split_data_loader, model, args, best_score, print_gen, device
     #         json.dump(references_BERT, f)
 
     # Calculate scores
-    metrics_dict = nlgeval_obj.compute_metrics(references, hypotheses)
-    print(metrics_dict)
+    metrics_dict = nlgeval_obj.compute_metrics_transpose(references, hypotheses)
+    pprint.pprint(metrics_dict)
 
     (P, R, Fs), hashname = score(hypotheses, references, lang='en', return_hash=True, model_type="bert-base-uncased")
     print(f'{hashname}: P={P.mean().item():.6f} R={R.mean().item():.6f} F={Fs.mean().item():.6f}')
@@ -495,8 +496,8 @@ def eval_beam_histatt(split_data_loader, model, args, best_score, print_gen, dev
     #         json.dump(references_BERT, f)
 
     # Calculate scores
-    metrics_dict = nlgeval_obj.compute_metrics(references, hypotheses)
-    print(metrics_dict)
+    metrics_dict = nlgeval_obj.compute_metrics_transpose(references, hypotheses)
+    pprint.pprint(metrics_dict)
 
     (P, R, Fs), hashname = score(hypotheses, references, lang='en', return_hash=True, model_type="bert-base-uncased")
     print(f'{hashname}: P={P.mean().item():.6f} R={R.mean().item():.6f} F={Fs.mean().item():.6f}')
